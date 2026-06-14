@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Akanksha Singh | Data Science & AI Portfolio</title>
+    <meta name="description" content="Premium recruiter-focused portfolio for Akanksha Singh, Data Science and AI student, HCLTech Analyst, and future AI Engineer." />
+    <meta name="keywords" content="Akanksha Singh, Data Science, AI Engineer, Machine Learning, HCLTech, IIT Madras, Portfolio" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #05060b;
+        --fg: #f8fbff;
+        --muted: #aeb7c8;
+        --line: rgba(255, 255, 255, 0.12);
+        --glass: rgba(255, 255, 255, 0.075);
+        --glass-strong: rgba(255, 255, 255, 0.12);
+        --blue: #74a4ff;
+        --violet: #b778ff;
+        --pink: #ff78d4;
+      }
+      html.light {
+        color-scheme: light;
+        --bg: #f7f9ff;
+        --fg: #101828;
+        --muted: #526070;
+        --line: rgba(16, 24, 40, 0.13);
+        --glass: rgba(255, 255, 255, 0.76);
+        --glass-strong: rgba(255, 255, 255, 0.92);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 18% 8%, rgba(83, 119, 255, 0.25), transparent 34rem),
+          radial-gradient(circle at 80% 10%, rgba(184, 120, 255, 0.18), transparent 34rem),
+          var(--bg);
+        color: var(--fg);
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea { font: inherit; }
+      .progress {
+        position: fixed; inset: 0 auto auto 0; height: 3px; width: 0;
+        z-index: 20; background: linear-gradient(90deg, var(--blue), var(--violet), var(--pink));
+      }
+      .grid-bg {
+        position: fixed; inset: 0; pointer-events: none; z-index: -2; opacity: .55;
+        background-image: linear-gradient(rgba(148,163,184,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.08) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, transparent, black 12%, black 72%, transparent);
+      }
+      .mesh {
+        position: fixed; inset: 0; z-index: -3; pointer-events: none;
+        background: radial-gradient(circle at var(--mx, 50%) var(--my, 20%), rgba(82, 111, 255, .18), transparent 24rem);
+      }
+      .nav {
+        position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 10;
+        width: min(1120px, calc(100% - 24px));
+        display: flex; align-items: center; justify-content: space-between; gap: 14px;
+        border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(24px);
+        border-radius: 999px; padding: 10px 14px; box-shadow: 0 18px 80px rgba(0,0,0,.22);
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; font-size: 14px; }
+      .logo { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--pink)); color: white; font-size: 12px; }
+      .navlinks { display: flex; gap: 2px; }
+      .navlinks a { padding: 9px 11px; border-radius: 999px; color: var(--muted); font-size: 14px; }
+      .navlinks a:hover { color: var(--fg); background: var(--glass-strong); }
+      .icon-btn { border: 1px solid var(--line); background: transparent; color: var(--fg); border-radius: 50%; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; }
+      .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+      .hero { min-height: 100vh; display: grid; align-items: center; padding: 116px 0 70px; position: relative; }
+      .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: center; }
+      .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(18px); border-radius: 999px; padding: 9px 14px; color: var(--muted); font-size: 14px; }
+      h1 { margin: 22px 0 0; font-size: clamp(58px, 9vw, 118px); line-height: .88; letter-spacing: 0; background: linear-gradient(100deg, var(--fg), #9cb5ff, #daa2ff, var(--fg)); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 8s linear infinite; }
+      @keyframes shimmer { to { background-position: 220% 50%; } }
+      .subtitle { margin: 26px 0 0; font-size: clamp(20px, 2.4vw, 30px); color: #dce6ff; font-weight: 650; }
+      html.light .subtitle { color: #3157ff; }
+      .lead { margin: 22px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; max-width: 690px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+      .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 13px 18px; border: 1px solid var(--line); font-weight: 750; font-size: 14px; transition: transform .2s ease, background .2s ease; }
+      .btn:hover { transform: translateY(-2px); background: var(--glass-strong); }
+      .btn.primary { background: var(--fg); color: var(--bg); border-color: transparent; }
+      .visual { position: relative; min-height: 500px; display: flex; align-items: center; justify-content: center; }
+      .profile-card { position: absolute; inset: auto 0 0 auto; width: min(420px, 92%); border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(24px); border-radius: 28px; padding: 18px; box-shadow: 0 20px 90px rgba(0,0,0,.32); }
+      .profile-inner { aspect-ratio: 4 / 5; border-radius: 22px; padding: 22px; border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; background: radial-gradient(circle at 38% 18%, rgba(255,255,255,.24), transparent 15rem), linear-gradient(145deg, rgba(76,103,255,.45), rgba(10,12,22,.9)); color: white; }
+      .float-icons { display: flex; justify-content: space-between; }
+      .float-icons span { width: 60px; height: 60px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.12); border-radius: 16px; animation: float 7s ease-in-out infinite; }
+      .float-icons span:nth-child(2) { animation-delay: .6s; } .float-icons span:nth-child(3) { animation-delay: 1.2s; }
+      @keyframes float { 50% { transform: translateY(-14px); } }
+      .avatar { width: 116px; height: 116px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.12)); box-shadow: 0 0 60px rgba(118,160,255,.35); }
+      section { padding: 92px 0; }
+      .heading { text-align: center; max-width: 790px; margin: 0 auto 42px; }
+      .heading p:first-child { color: var(--blue); text-transform: uppercase; letter-spacing: .22em; font-size: 13px; font-weight: 800; }
+      h2 { font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: 0; margin: 10px 0 0; }
+      .heading .copy { color: var(--muted); line-height: 1.7; font-size: 18px; }
+      .glass { border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(22px); border-radius: 26px; box-shadow: 0 18px 80px rgba(0,0,0,.20); }
+      .about-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 20px; }
+      .pad { padding: 26px; }
+      .photo-placeholder { aspect-ratio: 1; border-radius: 20px; padding: 22px; display: flex; align-items: end; background: linear-gradient(135deg, rgba(80,125,255,.42), rgba(177,99,255,.28), rgba(255,120,212,.24)); }
+      .copy-block { color: var(--muted); line-height: 1.8; font-size: 18px; }
+      .mini-grid, .stats, .certs { display: grid; gap: 14px; }
+      .mini-grid { grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+      .mini { border: 1px solid var(--line); background: rgba(255,255,255,.05); border-radius: 18px; padding: 16px; font-weight: 750; }
+      .stats { grid-template-columns: repeat(5, 1fr); }
+      .stat strong { display: block; font-size: 38px; }
+      .stat span { color: var(--muted); font-size: 14px; }
+      .skills, .projects, .blog-grid { display: grid; gap: 20px; }
+      .skills { grid-template-columns: repeat(3, 1fr); }
+      .skill-card h3, .project h3, .experience h3 { margin: 0; font-size: 24px; }
+      .skill-row { margin-top: 18px; }
+      .skill-row div:first-child { display: flex; justify-content: space-between; color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+      .bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,.1); overflow: hidden; }
+      .bar span { display: block; height: 100%; width: var(--w); border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--pink)); transform-origin: left; animation: grow 1.4s ease both; }
+      @keyframes grow { from { transform: scaleX(0); } }
+      .projects { grid-template-columns: repeat(2, 1fr); }
+      .project { overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+      .project:hover { transform: translateY(-6px); border-color: rgba(116,164,255,.48); }
+      .project-img { height: 198px; padding: 22px; background: linear-gradient(135deg, var(--a), var(--b)); }
+      .project-img div { height: 100%; border: 1px solid rgba(255,255,255,.22); border-radius: 18px; background: rgba(0,0,0,.18); display: flex; align-items: end; justify-content: space-between; padding: 18px; color: white; }
+      .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+      .badge { border: 1px solid var(--line); background: rgba(255,255,255,.05); border-radius: 999px; padding: 6px 10px; color: var(--muted); font-size: 12px; }
+      .timeline { position: relative; max-width: 760px; margin: 0 auto; }
+      .timeline::before { content: ""; position: absolute; inset: 0 auto 0 50%; width: 1px; background: linear-gradient(var(--blue), var(--violet), transparent); }
+      .time-item { width: calc(50% - 28px); margin-bottom: 24px; }
+      .time-item:nth-child(even) { margin-left: auto; }
+      .certs { grid-template-columns: repeat(4, 1fr); }
+      .github-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+      .contrib { display: grid; grid-template-columns: repeat(26, 1fr); gap: 4px; }
+      .sq { height: 12px; border-radius: 3px; background: rgba(255,255,255,.10); }
+      .sq.b { background: var(--blue); } .sq.v { background: var(--violet); } .sq.m { background: rgba(116,164,255,.45); }
+      .experience-grid { display: grid; grid-template-columns: .55fr 1fr; gap: 20px; align-items: start; }
+      .experience-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .filterbar { display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 18px; padding: 14px; }
+      .searchbox { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.05); border-radius: 18px; padding: 11px 14px; min-width: 280px; }
+      .searchbox input { border: 0; outline: 0; color: var(--fg); background: transparent; width: 100%; }
+      .tabs { display: flex; gap: 8px; overflow-x: auto; }
+      .tabs button { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+      .tabs button.active { background: var(--fg); color: var(--bg); }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 20px; }
+      .links { display: grid; gap: 12px; }
+      .social-link { display: flex; gap: 12px; align-items: center; border: 1px solid var(--line); background: rgba(255,255,255,.05); border-radius: 18px; padding: 15px; }
+      .social-link small { display: block; color: var(--muted); margin-top: 2px; }
+      form { display: grid; gap: 14px; }
+      input, textarea { border: 1px solid var(--line); background: rgba(255,255,255,.05); color: var(--fg); border-radius: 18px; padding: 14px 15px; outline: 0; }
+      textarea { resize: vertical; min-height: 145px; }
+      .notice { display: none; color: #dbe7ff; background: rgba(116,164,255,.16); border-radius: 16px; padding: 13px; }
+      footer { border-top: 1px solid var(--line); padding: 34px 0; color: var(--muted); }
+      .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+      .reveal { opacity: 0; transform: translateY(24px); transition: .7s ease; }
+      .reveal.show { opacity: 1; transform: translateY(0); }
+
+      /* ── Background 3D floating entities canvas ── */
+      #bg-3d {
+        position: fixed; inset: 0;
+        width: 100vw; height: 100vh;
+        z-index: -1; pointer-events: none;
+      }
+
+      /* ── Claude 3D Scroll Section ── */
+      .claude-section { height: 260vh; position: relative; }
+      .claude-sticky {
+        position: sticky; top: 0; height: 100vh;
+        display: flex; align-items: center; justify-content: center; overflow: hidden;
+      }
+      #claude-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .claude-text {
+        position: relative; z-index: 2; text-align: center;
+        padding: 28px 36px;
+        background: rgba(5, 6, 11, 0.52);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--line); border-radius: 28px;
+        max-width: 500px; pointer-events: none;
+      }
+      .claude-text .eyebrow-label {
+        color: var(--blue); text-transform: uppercase; letter-spacing: .22em;
+        font-size: 12px; font-weight: 800; margin: 0 0 12px; display: block;
+      }
+      .claude-text h2 {
+        font-size: clamp(24px, 3.5vw, 44px); margin: 0 0 12px; line-height: 1.1;
+        background: linear-gradient(100deg, var(--fg), #9cb5ff, #daa2ff, var(--fg));
+        background-size: 220% 100%; -webkit-background-clip: text; background-clip: text;
+        color: transparent; animation: shimmer 8s linear infinite;
+      }
+      .claude-text p {
+        color: var(--muted); font-size: 15px; margin: 0 0 18px; line-height: 1.65;
+      }
+      .claude-prog-track {
+        width: 100%; height: 4px; background: rgba(255,255,255,.1); border-radius: 99px; overflow: hidden;
+      }
+      .claude-prog-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, var(--blue), var(--violet), var(--pink));
+        border-radius: 99px; transition: width .1s linear;
+      }
+      @media (max-width: 980px) {
+        .navlinks { display: none; }
+        .hero-grid, .about-grid, .github-grid, .experience-grid, .contact-grid { grid-template-columns: 1fr; }
+        .skills, .stats, .certs, .experience-list { grid-template-columns: repeat(2, 1fr); }
+        .visual { min-height: 430px; margin-top: 28px; }
+      }
+      @media (max-width: 660px) {
+        .stats, .skills, .projects, .certs, .blog-grid, .mini-grid { grid-template-columns: 1fr; }
+        .timeline::before { left: 15px; }
+        .time-item, .time-item:nth-child(even) { width: auto; margin-left: 34px; }
+        .filterbar { align-items: stretch; flex-direction: column; }
+        .searchbox { min-width: 0; }
+        .footer-row { flex-direction: column; text-align: center; }
+        .visual { min-height: 570px; }
+        h1 { font-size: clamp(54px, 16vw, 74px); }
+      }
+      .why-hire-me{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.why-hire-me h3{
+  margin:0 0 12px;
+  font-size:22px;
+  font-weight:700;
+  color:white;
+}
+
+.why-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);
+  border-radius:14px;
+  transition:.3s ease;
+}
+
+.why-item:hover{
+  transform:translateX(5px);
+  background:rgba(255,255,255,.12);
+}
+
+.why-item span{
+  font-size:22px;
+}
+
+.why-item strong{
+  display:block;
+  color:white;
+  margin-bottom:4px;
+}
+
+.why-item p{
+  margin:0;
+  color:rgba(255,255,255,.75);
+  font-size:14px;
+  line-height:1.5;
+}
+.panda {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: .7s ease;
+}
+
+.panda.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* HAMBURGER — only show on smaller screens */
+.hamburger { display: none; }
+
+@media (max-width: 980px) {
+  .navlinks { display: none; }
+  .hamburger { display: grid; }
+}
+
+/* SIDEBAR OVERLAY */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: rgba(5,6,11,0.97);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid var(--line);
+  z-index: 999;
+  transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+}
+.sidebar.open {
+  right: 0;
+}
+
+/* SIDEBAR HEADER */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* SIDEBAR NAV */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  flex: 1;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+.sidebar-link:hover {
+  color: var(--fg);
+  background: var(--glass);
+  border-left-color: var(--blue);
+  padding-left: 30px;
+}
+.sl-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  min-width: 24px;
+}
+
+/* SIDEBAR FOOTER */
+.sidebar-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--line);
+}/* ── FOMO Feature 1: Status Pill ── */
+.fomo-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.08);
+  color: #4ade80; padding: 7px 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 700; margin: 18px 0 0; width: fit-content;
+}
+.pulse-dot {
+  width: 8px; height: 8px; background: #4ade80; border-radius: 50%;
+  animation: pulse-green 2s infinite;
+}
+@keyframes pulse-green {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+/* ── FOMO Feature 2: Resume Social Proof ── */
+.action-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.social-proof-text { color: var(--muted); font-size: 11px; font-weight: 500; }
+
+/* ── FOMO Feature 3: Gated Modal ── */
+.gated-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+  z-index: 2000; display: none; place-items: center; opacity: 0; transition: .3s;
+}
+.gated-modal-overlay.active { display: grid; opacity: 1; }
+.gated-modal {
+  background: rgba(10,12,22,.95); border: 1px solid var(--line); padding: 32px;
+  border-radius: 24px; max-width: 400px; width: 90%; text-align: center; position: relative;
+  box-shadow: 0 20px 80px rgba(0,0,0,.6);
+}
+.close-modal { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+.gated-modal h3 { margin: 0 0 8px; color: white; font-size: 22px; }
+.gated-modal p { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+.gated-modal form { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── FOMO Feature 4: Countdown Card ── */
+.countdown-card { border: 1px solid rgba(255, 120, 212, 0.4); background: rgba(255, 120, 212, 0.05); }
+.timer-text { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 800; color: var(--pink); display: block; margin: 8px 0; letter-spacing: 1px; }
+
+/* ── FOMO Feature 5: Response Guarantee ── */
+.response-guarantee {
+  background: rgba(116, 164, 255, 0.1); border: 1px solid rgba(116, 164, 255, 0.3);
+  padding: 12px 16px; border-radius: 14px; font-size: 13px; color: #9cb5ff;
+  display: flex; align-items: center; gap: 10px; font-weight: 600;
+}
+    </style>
+  </head>
+  <body>
+    <div class="progress" id="progress"></div>
+    <div class="grid-bg"></div>
+    <div class="mesh" id="mesh"></div>
+    <canvas id="bg-3d"></canvas>
+    <nav class="nav">
+  <a class="brand" href="#hero"><span class="logo">A</span></a>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#github">GitHub</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="icon-btn" id="theme" aria-label="Toggle theme">☼</button>
+    <button class="icon-btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</nav>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span style="font-weight:700;font-size:15px;">Menu</span>
+    <button class="icon-btn" id="closeBtn">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#about" class="sidebar-link">
+      <span class="sl-num">01</span>About
+    </a>
+    <a href="#skills" class="sidebar-link">
+      <span class="sl-num">02</span>Skills
+    </a>
+    <a href="#projects" class="sidebar-link">
+      <span class="sl-num">03</span>Projects
+    </a>
+    <a href="#education" class="sidebar-link">
+      <span class="sl-num">04</span>Education
+    </a>
+    <a href="#github" class="sidebar-link">
+      <span class="sl-num">05</span>GitHub
+    </a>
+    <a href="#blog" class="sidebar-link">
+      <span class="sl-num">06</span>Blog
+    </a>
+    <a href="#contact" class="sidebar-link">
+      <span class="sl-num">07</span>Contact
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <p style="font-size:13px;color:var(--muted)">@akankshatensor</p>
+    <div style="display:flex;gap:10px;margin-top:12px;">
+      <a href="https://github.com/akankshatensor"
+   target="_blank"
+   class="icon-btn"
+   style="font-size:12px;width:auto;padding:8px 14px;border-radius:10px;">
+   GitHub
+</a>
+
+<a href="https://www.linkedin.com/in/akankshatensor/"
+   target="_blank"
+   class="icon-btn"
+   style="font-size:12px;width:auto;padding:8px 14px;border-radius:10px;">
+   LinkedIn
+</a>
+    </div>
+  </div>
+</div>
+
+    <main>
+      <section class="hero shell" id="hero">
+        <div class="hero-grid">
+          <div class="reveal">
+            <h1>Akanksha</h1>
+            <p class="subtitle">Data Science & AI Student • Analyst @ HCLTech • Building Intelligent Solutions</p>
+            <p class="lead">Passionate about Machine Learning, Data Analytics, Artificial Intelligence, and building impactful data-driven solutions.</p>
+
+<div class="fomo-pill">
+  <span class="pulse-dot"></span> Actively Interviewing | 2 slots left this week
+</div>
+
+<div class="actions">
+  <a class="btn primary" href="#projects">View Projects ↗</a>
+  
+  <div class="action-wrapper">
+    <a class="btn" href="Akanksha.DS.pdf">Download Resume ↓</a>
+    <span class="social-proof-text">🔥 <span id="resume-count">18</span> recruiters viewed today</span>
+  </div>
+  
+  <a class="btn" href="#contact">Contact Me ✉</a>
+</div>
+          </div>
+          <div class="visual reveal">
+            <div class="profile-card">
+              <div class="profile-inner">
+                <div class="why-hire-me">
+  <h3>Why Hire Me?</h3>
+
+  <div class="why-item">
+    <span>💼</span>
+    <div>
+      <strong>Industry Experience</strong>
+      <p>Analyst at HCLTech with real-world exposure.</p>
+    </div>
+  </div>
+
+  <div class="why-item">
+    <span>🎓</span>
+    <div>
+      <strong>Academic Foundation</strong>
+      <p>Studying Data Science & AI at IIT Madras.</p>
+    </div>
+  </div>
+
+  <div class="why-item">
+    <span>📊</span>
+    <div>
+      <strong>Data-Driven Thinking</strong>
+      <p>Skilled in Python, SQL, Analytics & ML.</p>
+    </div>
+  </div>
+
+  <div class="why-item">
+    <span>🚀</span>
+    <div>
+      <strong>Growth Mindset</strong>
+      <p>Continuously learning AI and emerging technologies.</p>
+    </div>
+  </div>
+</div>
+            
+  
+                <div>
+                  
+                  
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Claude 3D Scroll Entity Section ── -->
+      <section id="claude-3d" class="claude-section">
+        <div class="claude-sticky">
+          <canvas id="claude-canvas"></canvas>
+          <div class="claude-text">
+            <span class="eyebrow-label">✦ IIT MADRAS • HCLTECH • DATA SCIENCE</span>
+            <h2>Building the future with data and AI.</h2>
+            <p>Showcasing projects, skills, and experiences in Data Science, Machine Learning, Analytics, and Software Development.</p>
+            <div class="claude-prog-track"><div class="claude-prog-fill" id="claudeProgFill"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell" id="about">
+        <div class="heading reveal"><p>About Me</p><h2>A rigorous learning path, grounded in real work.</h2><p class="copy">Akanksha brings academic depth, industry exposure, and curiosity together to solve real problems through data.</p></div>
+        <div class="about-grid">
+          <div class="glass pad reveal"><div class="photo-placeholder"><div><p style="font-size: 100px; padding-left: 150px; padding-bottom: 31px;font-weight: 900;background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));background-clip: text;-webkit-background-clip: text;-webkit-text-fill-color: transparent;text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);">A</p></div></div></div>
+          <div class="glass pad reveal"><p class="copy-block">Akanksha is building a strong foundation across IIT Madras, HCLTech, and Amity University, combining formal Data Science and AI study with professional analyst experience and computer applications fundamentals. Her current learning path focuses on machine learning, analytics, programming, visualization, and the discipline needed to convert raw data into clear decisions.</p><p class="copy-block">Her aspiration is to become an AI Engineer and Data Scientist who can design practical, ethical, and high-impact data products. She is especially drawn to technology that improves business outcomes, simplifies complex decisions, and keeps learning at the center of every project.</p><div class="mini-grid"><div class="mini">Machine Learning</div><div class="mini">Data Analytics</div><div class="mini">Lifelong Learning</div></div></div>
+        </div>
+      </section>
+
+      <section class="shell"><div class="stats">
+        <div class="glass pad stat reveal"><strong>12+</strong><span>Projects Completed</span></div><div class="glass pad stat reveal"><strong>8+</strong><span>Certifications Earned</span></div><div class="glass pad stat reveal"><strong>18+</strong><span>GitHub Repositories</span></div><div class="glass pad stat reveal"><strong>20+</strong><span>Technologies Learned</span></div><div class="glass pad stat reveal"><strong>500+</strong><span>LinkedIn Connections</span></div>
+      </div></section>
+
+      <section class="shell" id="skills">
+        <div class="heading reveal"><p>Skills</p><h2>Technical range for modern data teams.</h2><p class="copy">Interactive cards with proficiency signals across programming, data science, and the tools used to ship analysis.</p></div>
+        <div class="skills">
+          <div class="glass pad skill-card reveal"><h3>Programming</h3><div class="skill-row"><div><span>Python</span><span>92%</span></div><p class="bar"><span style="--w:92%"></span></p></div><div class="skill-row"><div><span>SQL</span><span>88%</span></div><p class="bar"><span style="--w:88%"></span></p></div><div class="skill-row"><div><span>Java</span><span>72%</span></div><p class="bar"><span style="--w:72%"></span></p></div><div class="skill-row"><div><span>HTML</span><span>90%</span></div><p class="bar"><span style="--w:90%"></span></p></div><div class="skill-row"><div><span>CSS</span><span>86%</span></div><p class="bar"><span style="--w:86%"></span></p></div></div>
+          <div class="glass pad skill-card reveal"><h3>Data Science</h3><div class="skill-row"><div><span>Pandas</span><span>90%</span></div><p class="bar"><span style="--w:90%"></span></p></div><div class="skill-row"><div><span>NumPy</span><span>86%</span></div><p class="bar"><span style="--w:86%"></span></p></div><div class="skill-row"><div><span>Matplotlib</span><span>82%</span></div><p class="bar"><span style="--w:82%"></span></p></div><div class="skill-row"><div><span>Scikit-Learn</span><span>78%</span></div><p class="bar"><span style="--w:78%"></span></p></div><div class="skill-row"><div><span>Machine Learning</span><span>80%</span></div><p class="bar"><span style="--w:80%"></span></p></div></div>
+          <div class="glass pad skill-card reveal"><h3>Tools</h3><div class="skill-row"><div><span>Git</span><span>78%</span></div><p class="bar"><span style="--w:78%"></span></p></div><div class="skill-row"><div><span>GitHub</span><span>82%</span></div><p class="bar"><span style="--w:82%"></span></p></div><div class="skill-row"><div><span>VS Code</span><span>88%</span></div><p class="bar"><span style="--w:88%"></span></p></div><div class="skill-row"><div><span>Power BI</span><span>76%</span></div><p class="bar"><span style="--w:76%"></span></p></div><div class="skill-row"><div><span>Jupyter Notebook</span><span>90%</span></div><p class="bar"><span style="--w:90%"></span></p></div></div>
+        </div>
+      </section>
+
+      <section class="shell" id="projects">
+        <div class="heading reveal"><p>Featured Projects</p><h2>Recruiter-friendly proof of applied learning.</h2><p class="copy">Each project is framed around a business or technical outcome, with clear stacks and action buttons.</p></div>
+        <div class="projects">
+          <article class="glass project reveal"><div class="project-img" style="--a:#3477ff;--b:#a855f7"><div><strong>Churn Model</strong><span>Case Study</span></div></div><div class="pad"><h3>Customer Churn Analysis</h3><p class="copy-block">Predict customer churn using machine learning algorithms.</p><div class="badges"><span class="badge">Python</span><span class="badge">Pandas</span><span class="badge">Scikit-Learn</span></div><button class="btn gated-trigger" style="color: var(--pink); border-color: var(--pink);">🔑 Unlock ML Architecture Docs</button>
+<a class="btn primary" href="#">Live Demo</a></div></article>
+          <article class="glass project reveal"><div class="project-img" style="--a:#22d3ee;--b:#2563eb"><div><strong>Regression</strong><span>Case Study</span></div></div><div class="pad"><h3>House Price Prediction</h3><p class="copy-block">Regression-based machine learning project.</p><div class="badges"><span class="badge">Python</span><span class="badge">Machine Learning</span></div><a class="btn" href="#">GitHub</a> <a class="btn primary" href="#">Live Demo</a></div></article>
+          <article class="glass project reveal"><div class="project-img" style="--a:#d946ef;--b:#f43f5e"><div><strong>Dashboard</strong><span>Case Study</span></div></div><div class="pad"><h3>Sales Data Dashboard</h3><p class="copy-block">Interactive Power BI dashboard.</p><div class="badges"><span class="badge">Power BI</span><span class="badge">Excel</span><span class="badge">SQL</span></div><a class="btn" href="#">GitHub</a> <a class="btn primary" href="#">Live Demo</a></div></article>
+          <article class="glass project reveal"><div class="project-img" style="--a:#6366f1;--b:#0ea5e9"><div><strong>SQL Insights</strong><span>Case Study</span></div></div><div class="pad"><h3>SQL Data Analysis</h3><p class="copy-block">Business insights using SQL queries.</p><div class="badges"><span class="badge">SQL</span><span class="badge">Data Analysis</span></div><a class="btn" href="#">GitHub</a> <a class="btn primary" href="#">Live Demo</a></div></article>
+        </div>
+      </section>
+
+      <section class="shell" id="education"><div class="heading reveal"><p>Education</p><h2>A timeline shaped by AI, analytics, and industry practice.</h2><p class="copy">Academic learning and professional training are presented as one coherent growth story.</p></div><div class="timeline"><div class="glass pad time-item reveal"><h3>IIT Madras 2024-28</h3><p class="copy-block">BS Degree in Data Science & Artificial Intelligence</p></div><div class="glass pad time-item reveal"><h3>Amity University 2024-27 </h3><p class="copy-block">Bachelor of Computer Applications (BCA)</p></div><div class="glass pad time-item reveal"><h3>HCL Technologies 2023-Present</h3><p class="copy-block">Analyst - IT Systems & Data</p></div><div class="glass pad time-item reveal"><h3>Ch. Chhabil Das Public School(CBSE)</h3><p class="copy-block">Class 12 - 2022 passed</p></div><div class="glass pad time-item reveal"><h3>St. Joseph's Academy(CISCE)</h3><p class="copy-block">Class 10 - 2020 passed</p></div></div></section>
+
+      <section class="shell"><div class="heading reveal"><p>Certifications</p><h2>Signals of consistent upskilling.</h2><p class="copy">A polished certification wall for technical learning, AI curiosity, and industry exposure.</p></div><div class="certs"><div class="glass pad reveal"><h3>HCLTech Certifications</h3><p class="copy-block">Verified industry learning.</p></div><div class="glass pad reveal"><h3>Data Science Certifications</h3><p class="copy-block">Analytics and data foundations.</p></div><div class="glass pad reveal"><h3>Python Certifications</h3><p class="copy-block">Programming fluency.</p></div><div class="glass pad reveal"><h3>AI and Machine Learning Certifications</h3><p class="copy-block">Modeling and AI concepts.</p></div></div></section>
+
+      <section class="shell" id="github"><div class="heading reveal"><p>GitHub Showcase</p><h2>Development activity at a glance.</h2><p class="copy">A recruiter-readable snapshot of contributions, repositories, and language strengths.</p></div><div class="github-grid"><div class="glass pad reveal"><h3>Contribution Graph</h3><div class="contrib" id="contrib"></div></div><div class="glass pad reveal"><h3>Statistics</h3><p class="mini">Top repositories: ML, dashboards, SQL analysis</p><p class="mini">Most used languages: Python, SQL, JavaScript</p><p class="mini">Focus: analytics, predictions, visualization</p></div></div></section>
+
+      <section class="shell"><div class="heading reveal"><p>Experience</p><h2>Analyst at HCLTech.</h2><p class="copy">Professional exposure that strengthens communication, delivery discipline, and data-informed problem solving.</p></div><div class="glass pad experience reveal"><div class="experience-grid"><div><h3>HCLTech</h3><p class="copy-block">Role: Analyst</p></div><div class="experience-list"><p class="mini">Responsibilities: analyze data, support technical workflows, document insights</p><p class="mini">Technologies: SQL, Excel, Power BI, collaboration tools</p><p class="mini">Achievements: professional discipline, stakeholder communication, faster learning cycles</p></div></div></div></section>
+
+      <section class="shell" id="blog"><div class="heading reveal"><p>Technical Blog</p><h2>A learning journal for data and AI.</h2><p class="copy">Searchable, category-driven article cards prepared for future writing and project breakdowns.</p></div><div class="glass filterbar reveal"><label class="searchbox">⌕ <input id="blogSearch" placeholder="Search notes..." /></label><div class="tabs" id="tabs"><button class="active" data-cat="All">All</button><button data-cat="Data">Data</button><button data-cat="ML">ML</button><button data-cat="Career">Career</button><button data-cat="Projects">Projects</button></div></div><div class="blog-grid" id="posts"></div></section>
+
+      <section class="shell" id="contact">
+  <div class="heading reveal">
+    <p>Contact</p>
+    <h2>Open to internships, projects, and AI opportunities.</h2>
+    <p class="copy">A crisp contact area with social links and a working local form confirmation.</p>
+  </div>
+  
+  <div class="contact-grid">
+    
+    <!-- ========================================== -->
+    <!-- LEFT COLUMN: Social Links                  -->
+    <!-- ========================================== -->
+    <div class="glass pad links reveal">
+      <a class="social-link" href="mailto:akankshatensor@gmail.com">
+        <strong>Email<small>akankshatensor@gmail.com</small></strong>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/akankshatensor/" target="_blank" rel="noopener noreferrer">
+        <strong>LinkedIn<small>https://www.linkedin.com/in/akankshatensor/</small></strong>
+      </a>
+      <a class="social-link" href="https://github.com/akankshatensor" target="_blank" rel="noopener noreferrer">
+        <strong>GitHub<small>https://github.com/akankshatensor</small></strong>
+      </a>
+      <a class="social-link" href="https://www.kaggle.com/akankshatensor" target="_blank" rel="noopener noreferrer">
+        <strong>Kaggle<small>https://www.kaggle.com/akankshatensor</small></strong>
+      </a>
+      <a class="social-link" href="https://x.com/akankshatensor" target="_blank" rel="noopener noreferrer">
+        <strong>X (Twitter)<small>https://x.com/akankshatensor</small></strong>
+      </a>
+      <a class="social-link" href="https://linktr.ee/akankshatensor" target="_blank" rel="noopener noreferrer">
+        <strong>Linktree<small>https://linktr.ee/akankshatensor</small></strong>
+      </a>
+    </div> <!-- This closing tag prevents the form from getting swallowed! -->
+
+    <!-- ========================================== -->
+    <!-- RIGHT COLUMN: Contact Form                 -->
+    <!-- ========================================== -->
+    <form class="glass pad reveal" id="contactForm">
+      
+      <!-- FOMO Response Guarantee -->
+      <div class="response-guarantee" style="margin-bottom: 8px;">
+        <span>⚡</span> Typically responds within 45 mins. You are next in queue.
+      </div>
+      
+      <input required placeholder="Your name" />
+      <input required type="email" placeholder="Email address" />
+      <textarea required placeholder="Message"></textarea>
+      <button class="btn primary" type="submit">Send Message ✉</button>
+      <p class="notice" id="notice">Thanks. The form is working locally and ready to connect to an email service.</p>
+      
+    </form>
+    
+  </div>
+</section>
+    </main>
+
+    <footer><div class="shell footer-row"><p>Build by Akanksha</p><p>GitHub · LinkedIn · Email</p></div></footer>
+
+    <script>
+      
+      const root = document.documentElement;
+      document.getElementById("theme").addEventListener("click", () => root.classList.toggle("light"));
+      const progress = document.getElementById("progress");
+      const mesh = document.getElementById("mesh");
+      window.addEventListener("pointermove", (e) => {
+        mesh.style.setProperty("--mx", `${(e.clientX / innerWidth) * 100}%`);
+        mesh.style.setProperty("--my", `${(e.clientY / innerHeight) * 100}%`);
+      });
+      window.addEventListener("scroll", () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.width = `${(scrollY / max) * 100}%`;
+      }, { passive: true });
+      const io = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("show")), { threshold: .12 });
+      document.querySelectorAll(".reveal, .panda").forEach((el) => io.observe(el));
+
+      // ═══════════════════════════════════════════════════════════════
+      // BACKGROUND 3D FLOATING ENTITIES (Three.js wireframe shapes)
+      // ═══════════════════════════════════════════════════════════════
+      (function initBg3D() {
+        const bgCanvas = document.getElementById('bg-3d');
+        const bgScene  = new THREE.Scene();
+        const bgCam    = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 2000);
+        const bgRend   = new THREE.WebGLRenderer({ canvas: bgCanvas, alpha: true, antialias: true });
+        bgRend.setPixelRatio(Math.min(devicePixelRatio, 2));
+        bgRend.setSize(innerWidth, innerHeight);
+        bgCam.position.z = 30;
+
+        const geos = [
+          new THREE.IcosahedronGeometry(1, 0),
+          new THREE.OctahedronGeometry(1.2, 0),
+          new THREE.TorusGeometry(1, 0.35, 6, 14),
+          new THREE.TetrahedronGeometry(1.1, 0),
+          new THREE.BoxGeometry(1.3, 1.3, 1.3),
+          new THREE.TorusKnotGeometry(0.7, 0.25, 48, 6),
+        ];
+        const palette = [0x74a4ff, 0xb778ff, 0xff78d4, 0x5585ff, 0xaa66ff];
+        const meshes  = [];
+
+        for (let i = 0; i < 16; i++) {
+          const mat = new THREE.MeshBasicMaterial({
+            color: palette[i % palette.length], wireframe: true,
+            transparent: true, opacity: 0.07 + Math.random() * 0.1,
+          });
+          const m = new THREE.Mesh(geos[i % geos.length], mat);
+          const angle  = (i / 16) * Math.PI * 2 + Math.random() * 0.8;
+          const radius = 14 + Math.random() * 16;
+          m.position.set(Math.cos(angle) * radius, (Math.random() - 0.5) * 28, -6 - Math.random() * 14);
+          const s = 0.7 + Math.random() * 2.4;
+          m.scale.set(s, s, s);
+          m.userData = {
+            rx: (Math.random() - 0.5) * 0.007,
+            ry: (Math.random() - 0.5) * 0.009,
+            rz: (Math.random() - 0.5) * 0.005,
+            amp: 1.5 + Math.random() * 2,
+            freq: 0.00018 + Math.random() * 0.0003,
+            off:  Math.random() * Math.PI * 2,
+            oy:   m.position.y,
+          };
+          bgScene.add(m);
+          meshes.push(m);
+        }
+
+        window.addEventListener('resize', () => {
+          bgCam.aspect = innerWidth / innerHeight;
+          bgCam.updateProjectionMatrix();
+          bgRend.setSize(innerWidth, innerHeight);
+        });
+
+        (function loop(t) {
+          requestAnimationFrame(loop);
+          meshes.forEach(m => {
+            m.rotation.x += m.userData.rx;
+            m.rotation.y += m.userData.ry;
+            m.rotation.z += m.userData.rz;
+            m.position.y = m.userData.oy + Math.sin(t * m.userData.freq + m.userData.off) * m.userData.amp;
+          });
+          bgRend.render(bgScene, bgCam);
+        })(0);
+      })();
+
+      // ═══════════════════════════════════════════════════════════════
+      // CLAUDE 3D SCROLL ENTITY — grows & evolves as you scroll
+      // ═══════════════════════════════════════════════════════════════
+      (function initClaude3D() {
+        const cCanvas = document.getElementById('claude-canvas');
+        if (!cCanvas) return;
+
+        const cScene = new THREE.Scene();
+        const cCam   = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+        const cRend  = new THREE.WebGLRenderer({ canvas: cCanvas, alpha: true, antialias: true });
+        cCam.position.z = 14;
+
+        function resize() {
+          const w = cCanvas.parentElement.offsetWidth;
+          const h = cCanvas.parentElement.offsetHeight;
+          cRend.setSize(w, h);
+          cRend.setPixelRatio(Math.min(devicePixelRatio, 2));
+          cCam.aspect = w / h;
+          cCam.updateProjectionMatrix();
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Lights
+        cScene.add(new THREE.AmbientLight(0x223366, 2));
+        const pl1 = new THREE.PointLight(0x74a4ff, 4, 40);
+        pl1.position.set(6, 6, 6);
+        cScene.add(pl1);
+        const pl2 = new THREE.PointLight(0xb778ff, 3, 40);
+        pl2.position.set(-6, -4, 4);
+        cScene.add(pl2);
+
+        // Core sphere
+        const coreMat = new THREE.MeshPhongMaterial({
+          color: 0x2255cc, emissive: 0x112244, shininess: 100, transparent: true, opacity: 0.9,
+        });
+        const core = new THREE.Mesh(new THREE.SphereGeometry(2, 64, 64), coreMat);
+        cScene.add(core);
+
+        // Wireframe overlay on sphere
+        cScene.add(new THREE.Mesh(
+          new THREE.SphereGeometry(2.05, 22, 22),
+          new THREE.MeshBasicMaterial({ color: 0x74a4ff, wireframe: true, transparent: true, opacity: 0.14 })
+        ));
+
+        // Orbital rings
+        function makeOrbit(r, tube, color, rx, ry, rz) {
+          const m = new THREE.Mesh(
+            new THREE.TorusGeometry(r, tube, 3, 100),
+            new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.6 })
+          );
+          m.rotation.set(rx, ry, rz);
+          cScene.add(m);
+          return m;
+        }
+        const o1 = makeOrbit(2.8, 0.045, 0x74a4ff, Math.PI / 2, 0, 0);
+        const o2 = makeOrbit(3.6, 0.038, 0xb778ff, Math.PI / 5, Math.PI / 4, 0);
+        const o3 = makeOrbit(4.5, 0.032, 0xff78d4, 0, Math.PI / 3, Math.PI / 6);
+        const o4 = makeOrbit(5.4, 0.026, 0x9ec1ff, Math.PI / 7, Math.PI / 2, Math.PI / 5);
+        o4.material.opacity = 0; // hidden until 50% scroll
+
+        // Particle system — 700 particles orbiting around
+        const PC  = 700;
+        const pP  = new Float32Array(PC * 3);
+        const pA  = Float32Array.from({ length: PC }, () => Math.random() * Math.PI * 2);
+        const pR  = Float32Array.from({ length: PC }, () => 2.9 + Math.random() * 3.8);
+        const pH  = Float32Array.from({ length: PC }, () => (Math.random() - 0.5) * 4.5);
+        const pSp = Float32Array.from({ length: PC }, () => 0.003 + Math.random() * 0.008);
+        const pBuf = new THREE.BufferGeometry();
+        pBuf.setAttribute('position', new THREE.BufferAttribute(pP, 3));
+        const pts = new THREE.Points(pBuf, new THREE.PointsMaterial({
+          color: 0x99bbff, size: 0.055, transparent: true, opacity: 0.9,
+        }));
+        cScene.add(pts);
+
+        const section = document.getElementById('claude-3d');
+        const progFill = document.getElementById('claudeProgFill');
+
+        function getProgress() {
+          if (!section) return 0;
+          const r = section.getBoundingClientRect();
+          const h = section.offsetHeight - innerHeight;
+          return Math.max(0, Math.min(1, -r.top / h));
+        }
+
+        let ct = 0;
+        (function loop() {
+          requestAnimationFrame(loop);
+          ct++;
+          const p = getProgress();
+
+          // ── scale grows 0.55→1.85 with scroll ──
+          const sc = 0.55 + p * 1.3;
+          cScene.scale.set(sc, sc, sc);
+
+          // ── rotation speeds up with scroll ──
+          const spd = 0.003 + p * 0.012;
+          core.rotation.y += spd;
+          core.rotation.x += spd * 0.28;
+
+          o1.rotation.z += 0.005 + p * 0.018;
+          o2.rotation.y += 0.004 + p * 0.014;
+          o3.rotation.x += 0.003 + p * 0.01;
+          o4.rotation.z -= 0.004 + p * 0.012;
+
+          // ── 4th ring fades in after 45% scroll ──
+          o4.material.opacity = Math.max(0, (p - 0.45) / 0.3) * 0.6;
+
+          // ── colour shifts blue → violet → pink ──
+          const cr = 0x22 + p * (0xb7 - 0x22);
+          const cg = 0x55 + p * (0x78 - 0x55);
+          const cb = 0xcc + p * (0xff - 0xcc);
+          coreMat.color.setRGB(cr / 255, cg / 255, cb / 255);
+          coreMat.emissive.setRGB(cr / 255 * 0.28, cg / 255 * 0.18, cb / 255 * 0.4);
+
+          // ── particles orbit faster with scroll ──
+          const sMult = 1 + p * 4.5;
+          for (let i = 0; i < PC; i++) {
+            pA[i] += pSp[i] * sMult;
+            pP[i*3]   = Math.cos(pA[i]) * pR[i];
+            pP[i*3+1] = pH[i] + Math.sin(pA[i] * 0.5 + ct * 0.009) * 1.3;
+            pP[i*3+2] = Math.sin(pA[i]) * pR[i];
+          }
+          pBuf.attributes.position.needsUpdate = true;
+
+          // ── pulsing core glow ──
+          pl1.intensity = 3 + Math.sin(ct * 0.04) * 2;
+          pl2.intensity = 2.5 + Math.cos(ct * 0.05) * 2;
+
+          // ── update text progress bar ──
+          if (progFill) progFill.style.width = (p * 100) + '%';
+
+          cRend.render(cScene, cCam);
+        })();
+      })();
+
+      const contrib = document.getElementById("contrib");
+      for (let i = 0; i < 156; i++) {
+        const cell = document.createElement("span"); cell.className = "sq " + (i % 9 === 0 ? "v" : i % 5 === 0 ? "b" : i % 3 === 0 ? "m" : "");
+        contrib.appendChild(cell);
+      }
+      const postsEl = document.getElementById("posts");
+      const blogData = [
+        ["Data Science Articles", "Notes on practical analytics, feature thinking, and model evaluation.", "Data"],
+        ["Machine Learning Notes", "Compact explanations of algorithms, experiments, and learning milestones.", "ML"],
+        ["Career Learnings", "Reflections from balancing IIT Madras, HCLTech, and Amity University.", "Career"],
+        ["Project Breakdowns", "Behind-the-scenes walkthroughs from data cleaning to final dashboards.", "Projects"]
+      ];
+      let active = "All";
+      function renderPosts() {
+        const q = document.getElementById("blogSearch").value.toLowerCase();
+        postsEl.innerHTML = "";
+        blogData.filter(p => (active === "All" || p[2] === active) && p.join(" ").toLowerCase().includes(q)).forEach(p => {
+          postsEl.insertAdjacentHTML("beforeend", `<article class="glass pad reveal show"><span class="badge">${p[2]}</span><h3>${p[0]}</h3><p class="copy-block">${p[1]}</p><a class="btn" href="#">Read more ↗</a></article>`);
+        });
+      }
+      document.getElementById("tabs").addEventListener("click", e => {
+        if (e.target.matches("button")) {
+          active = e.target.dataset.cat;
+          document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("active", b === e.target));
+          renderPosts();
+        }
+      });
+      document.getElementById("blogSearch").addEventListener("input", renderPosts);
+      renderPosts();
+      document.getElementById("contactForm").addEventListener("submit", e => {
+        e.preventDefault();
+        document.getElementById("notice").style.display = "block";
+      });
+      // SIDEBAR
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+menuBtn.addEventListener('click', openSidebar);
+closeBtn.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+// Close sidebar when any link is clicked
+document.querySelectorAll('.sidebar-link').forEach(link => {
+  link.addEventListener('click', closeSidebar);
+});
+    </script>
+    <div class="gated-modal-overlay" id="gatedModal">
+  <div class="gated-modal">
+    <button class="close-modal" id="closeGatedModal">✕</button>
+    <h3>Recruiter Access Only</h3>
+    <p>Enter your corporate email to unlock the proprietary ML pipeline architecture and source code for this project.</p>
+    <form id="gatedForm">
+      <input type="email" required placeholder="name@company.com" />
+      <button class="btn primary" type="submit" style="justify-content: center;">Send Access Link</button>
+    </form>
+  </div>
+</div>
+  </body>
+</html>
